@@ -317,3 +317,73 @@ input {
     border-radius: 4px;
     color: white;
 }
+
+
+/* Tambahkan ini di style.css kamu */
+
+.edit-member-container {
+    background: #b60000;
+    padding: 30px;
+    border-radius: 8px;
+    color: white;
+    width: 90%;
+    /* Lebarkan sedikit */
+    position: relative;
+}
+
+.form-grid {
+    display: flex;
+    gap: 50px;
+    /* Jarak antar kolom */
+}
+
+.form-column {
+    flex: 1;
+    /* Supaya kolom punya lebar yang sama */
+    display: flex;
+    flex-direction: column;
+}
+
+.form-column label {
+    margin-top: 15px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-column input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    color: #333;
+}
+
+.btn-save {
+    background: #1d9c59;
+    /* Warna Hijau seperti di gambar */
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    float: right;
+    /* Pindahkan ke kanan bawah */
+    margin-top: 20px;
+}
+
+.paket-select {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.paket.active {
+    background: #333;
+    padding: 5px 15px;
+    border-radius: 4px;
+}
+
+.paket.inactive {
+    color: #880000;
+    font-weight: bold;
+}

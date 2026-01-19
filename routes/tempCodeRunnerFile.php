@@ -28,10 +28,3 @@ Route::get('/member', function () {
 Route::get('/edit', function () {
     return view('edit');
 })->name('member.edit');
-
-
-Route::get('/member/edit', function () {
-    return view('edit');
-})->name('member.edit');
-
-

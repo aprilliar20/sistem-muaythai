@@ -1,13 +1,15 @@
-@extends('layouts.main')
-
-@section('content')
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Member</title>
+</head>
+<body>
 
 <div class="edit-member-container">
     <h2>Edit Member</h2>
 
     <div class="form-grid">
 
-        <!-- Kolom Kiri -->
         <div class="form-column">
             <label>Nama</label>
             <input type="text" placeholder="Aprillia R">
@@ -25,7 +27,6 @@
             <input type="number" placeholder="5">
         </div>
 
-        <!-- Kolom Kanan -->
         <div class="form-column">
             <label>Masa Aktif</label>
             <input type="date" value="2025-08-20">
@@ -42,10 +43,11 @@
             <label>QR Code</label>
             <a href="#" class="qr-link">A123421</a>
         </div>
-
     </div>
 
     <button class="btn-save">Simpan</button>
 </div>
 
-@endsection
+</body>
+</html>
+
