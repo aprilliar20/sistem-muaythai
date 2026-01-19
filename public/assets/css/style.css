@@ -1,0 +1,319 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+label {
+    font-size: 14px;
+}
+
+button.btn {
+    border-radius: 6px;
+    padding: 10px 0;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1a0000;
+    color: #fff;
+}
+
+.layout {
+    display: flex;
+}
+
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 240px;
+    background: #c20000;
+    padding: 25px;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    margin-bottom: 35px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.sidebar nav a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 8px 0;
+    font-size: 15px;
+}
+
+.sidebar nav a.active {
+    font-weight: bold;
+}
+
+
+/* CONTENT */
+
+.content {
+    flex: 1;
+    padding: 25px 40px;
+}
+
+.topbar {
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.admin-label {
+    font-size: 14px;
+}
+
+
+/* CARDS */
+
+.card-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: #fff;
+    color: #000;
+    padding: 15px 20px;
+    border-radius: 4px;
+    width: 160px;
+    text-align: center;
+}
+
+.card h4 {
+    margin: 5px 0 0;
+}
+
+
+/* BUTTON */
+
+.scan-btn {
+    background: #c20000;
+    border: none;
+    padding: 15px 30px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    margin-bottom: 25px;
+}
+
+
+/* TABLE */
+
+.absen-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    color: #000;
+}
+
+.absen-table thead {
+    background: #c20000;
+    color: #fff;
+}
+
+.absen-table th,
+.absen-table td {
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.absen-table tbody tr:nth-child(even) {
+    background: #f3f3f3;
+}
+
+.member-actions {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.search-input {
+    width: 250px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn-add {
+    background: #c20000;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.member-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    color: #000;
+}
+
+.member-table thead {
+    background: #c20000;
+    color: white;
+}
+
+.member-table th,
+.member-table td {
+    padding: 10px;
+    text-align: left;
+}
+
+.badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #fff;
+}
+
+.badge.aktif {
+    background: #1d9c59;
+}
+
+.badge.nonaktif {
+    background: #d12421;
+}
+
+.icon-btn {
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 8px;
+}
+
+.info-row {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #ccc;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.page-number {
+    padding: 5px 10px;
+    background: #ddd;
+    border-radius: 4px;
+}
+
+.page-number.active {
+    background: #c20000;
+    color: white;
+}
+
+.page-prev,
+.page-next {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.page-number {
+    padding: 6px 12px;
+    background: #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.page-number.active {
+    background: #c20000;
+    color: white;
+    cursor: default;
+}
+
+.page-number.disabled {
+    background: #777;
+    color: #fff;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.edit-member-container {
+    background: #b60000;
+    margin-top: 30px;
+    padding: 30px;
+    border-radius: 5px;
+    color: white;
+    width: 80%;
+}
+
+.form-grid {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.form-column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 50%;
+}
+
+input {
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+}
+
+.paket-select span {
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-right: 6px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.paket.active {
+    background: #292929;
+    color: white;
+}
+
+.paket.inactive {
+    background: none;
+    color: #ffeaea;
+}
+
+.status.nonaktif {
+    background: #d40000;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    width: fit-content;
+}
+
+.qr-link {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.btn-save {
+    margin-top: 20px;
+    padding: 8px 25px;
+    background: green;
+    border: none;
+    border-radius: 4px;
+    color: white;
+}

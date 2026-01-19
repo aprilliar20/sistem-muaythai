@@ -1,0 +1,51 @@
+@extends('layouts.main')
+
+@section('content')
+
+<div class="edit-member-container">
+    <h2>Edit Member</h2>
+
+    <div class="form-grid">
+
+        <!-- Kolom Kiri -->
+        <div class="form-column">
+            <label>Nama</label>
+            <input type="text" placeholder="Aprillia R">
+
+            <label>No HP</label>
+            <input type="text" placeholder="08127382929">
+
+            <label>Paket</label>
+            <div class="paket-select">
+                <span class="paket inactive">Unlimited</span>
+                <span class="paket active">Reguler</span>
+            </div>
+
+            <label>Sisa</label>
+            <input type="number" placeholder="5">
+        </div>
+
+        <!-- Kolom Kanan -->
+        <div class="form-column">
+            <label>Masa Aktif</label>
+            <input type="date" value="2025-08-20">
+
+            <label>Status</label>
+            <span class="status nonaktif">Non Aktif</span>
+
+            <label>Email</label>
+            <input type="email" value="ramanapril@gmail.com">
+
+            <label>Password</label>
+            <input type="password" value="april123#">
+
+            <label>QR Code</label>
+            <a href="#" class="qr-link">A123421</a>
+        </div>
+
+    </div>
+
+    <button class="btn-save">Simpan</button>
+</div>
+
+@endsection
