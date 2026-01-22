@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Edit Member</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('content')
 
 <div class="edit-member-container">
     <h2>Edit Member</h2>
@@ -12,10 +9,10 @@
 
         <div class="form-column">
             <label>Nama</label>
-            <input type="text" placeholder="Aprillia R">
+            <input type="text" value="Aprillia R">
 
             <label>No HP</label>
-            <input type="text" placeholder="08127382929">
+            <input type="text" value="08127382929">
 
             <label>Paket</label>
             <div class="paket-select">
@@ -24,7 +21,7 @@
             </div>
 
             <label>Sisa</label>
-            <input type="number" placeholder="5">
+            <input type="number" value="5">
         </div>
 
         <div class="form-column">
@@ -45,9 +42,10 @@
         </div>
     </div>
 
-    <button class="btn-save">Simpan</button>
+    <button type="button" class="btn-save">Simpan</button>
 </div>
 
-</body>
-</html>
+@endsection
+
+
 

@@ -89,7 +89,7 @@
             <h2>Login</h2>
 
             <div class="card">
-                <form action="{{ route('login.process') }}" method="POST">
+                <form action="/login" method="POST">
                     @csrf
 
                     <label>Email</label>
@@ -106,3 +106,4 @@
 
 </body>
 </html>
+ 

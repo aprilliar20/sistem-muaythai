@@ -296,94 +296,321 @@ input {
     color: #ffeaea;
 }
 
-.status.nonaktif {
-    background: #d40000;
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 12px;
-    width: fit-content;
-}
-
 .qr-link {
     color: #fff;
     text-decoration: underline;
 }
 
 .btn-save {
-    margin-top: 20px;
+    margin-top: 40px;
     padding: 8px 25px;
-    background: green;
+    background: rgb(53, 179, 53);
     border: none;
     border-radius: 4px;
     color: white;
 }
 
-
-/* Tambahkan ini di style.css kamu */
-
-.edit-member-container {
-    background: #b60000;
-    padding: 30px;
-    border-radius: 8px;
-    color: white;
-    width: 90%;
-    /* Lebarkan sedikit */
-    position: relative;
-}
-
-.form-grid {
-    display: flex;
-    gap: 50px;
-    /* Jarak antar kolom */
-}
-
-.form-column {
-    flex: 1;
-    /* Supaya kolom punya lebar yang sama */
-    display: flex;
-    flex-direction: column;
-}
-
-.form-column label {
-    margin-top: 15px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.form-column input {
-    padding: 10px;
+.paket-btn {
+    padding: 5px 12px;
     border-radius: 5px;
     border: none;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 8px;
+    background: #3b3b3b;
+    color: white;
+}
+
+.paket-btn.active {
+    background: #1d1d1d;
+}
+
+.paket-btn.inactive {
+    background: #555;
+}
+
+.status.aktif {
+    background: #1d9c59;
+    padding: 4px 5px;
+    border-radius: 3px;
+    font-size: 15px;
+    color: white;
+}
+
+.filter-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+.select-month,
+.select-year {
+    padding: 7px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.badge {
+    padding: 3px 7px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: white;
+}
+
+.badge.aktif {
+    background: green;
+}
+
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 15px;
+    align-items: center;
+}
+
+.page-number,
+.page-arrow {
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #ddd;
+}
+
+.page-number.active {
+    background: #b50000;
+    color: white;
+    font-weight: bold;
+}
+
+.page-number.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+
+/* ====================== */
+
+
+/*   MEMBER DASHBOARD     */
+
+
+/* ====================== */
+
+.member-layout {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background: #1a0000;
+    color: white;
+    font-family: sans-serif;
+}
+
+.member-sidebar {
+    width: 230px;
+    background: #b50000;
+    padding: 20px;
+}
+
+.member-sidebar h2 {
+    font-size: 20px;
+    line-height: 1.3em;
+    margin-bottom: 30px;
+}
+
+.member-sidebar nav a {
+    display: block;
+    padding: 10px 0;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 8px;
+}
+
+.member-sidebar nav a.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.member-content {
+    flex: 1;
+    padding: 25px 40px;
+    overflow-y: auto;
+}
+
+.member-topbar {
+    width: 100%;
+    text-align: right;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.member-title {
+    font-size: 22px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.member-info-container {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.member-info-box {
+    background: white;
+    color: black;
+    padding: 18px 30px;
+    border-radius: 4px;
+    width: 200px;
+    text-align: center;
+}
+
+.member-info-box .value {
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.member-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.member-table thead {
+    background: #b50000;
+    color: white;
+}
+
+.member-table th,
+.member-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    color: white;
+}
+
+.member-table td {
+    color: white;
+}
+
+.data-card {
+    background: #b50000;
+    padding: 30px;
+    border-radius: 4px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 50px;
+    margin-bottom: 25px;
+}
+
+.form-col {
+    flex: 1;
+    min-width: 180px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.disabled-input {
+    width: 100%;
+    padding: 8px;
+    background: #d4d4d4;
+    border: none;
+    border-radius: 3px;
     color: #333;
 }
 
-.btn-save {
-    background: #1d9c59;
-    /* Warna Hijau seperti di gambar */
-    color: white;
-    border: none;
-    padding: 12px 40px;
-    border-radius: 5px;
-    cursor: pointer;
+.disabled-input:disabled {
+    opacity: 1;
+    cursor: not-allowed;
+}
+
+.badge {
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 13px;
     font-weight: bold;
-    float: right;
-    /* Pindahkan ke kanan bawah */
+    display: inline-block;
+}
+
+.badge.nonaktif {
+    background: #ff4a4a;
+    color: white;
+}
+
+.badge.aktif {
+    background: #28a745;
+    color: white;
+}
+
+.badge.paket {
+    background: #222;
+    color: white;
+}
+
+.attendance-card {
+    background: #b50000;
+    padding: 20px 25px;
+    border-radius: 4px;
+    width: 100%;
     margin-top: 20px;
 }
 
-.paket-select {
-    display: flex;
-    gap: 10px;
-    margin-top: 5px;
+.attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgb(21, 20, 20);
+    border-radius: 3px;
+    overflow: hidden;
 }
 
-.paket.active {
-    background: #333;
-    padding: 5px 15px;
-    border-radius: 4px;
-}
-
-.paket.inactive {
-    color: #880000;
+.attendance-table th {
+    background: #d00000;
+    color: rgb(20, 18, 18);
+    padding: 10px;
     font-weight: bold;
+    font-size: 14px;
+    text-align: left;
+}
+
+.attendance-table td {
+    padding: 10px;
+    font-size: 14px;
+    border-bottom: 1px solid #151313;
+}
+
+.pagination-member {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.pagination-member .page {
+    padding: 6px 12px;
+    margin-left: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.pagination-member .active {
+    background: #d00000;
+    color: rgb(244, 241, 241);
+    border-color: #d00000;
+}
+
+.pagination-member .disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
 }
