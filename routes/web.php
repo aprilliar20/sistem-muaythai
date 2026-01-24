@@ -3,20 +3,20 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
-// Redirect root (/) ke halaman login
+
 Route::get('/', function () {
     return redirect()->route('login');
 });
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'authenticate'])->name('login.process');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Halaman login (GET)
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
 
-Route::post('/login', [AuthController::class, 'authenticate']);
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
+//admin
+Route::middleware(['auth', 'role:admin'])->group(function() {
+    Route::get('/dashboard', function() {
+        return view('dashboard');
+    })->name('dashboard');
 });
 
 Route::get('/member', function () {
@@ -35,6 +35,14 @@ Route::get('/rekap', function () {
     return view('rekap');
 });
 
+
+//member
+Route::middleware(['auth', 'role:member'])->group(function() {
+    Route::get('/member/dashboard', function() {
+        return view('member.dashboard');
+    })->name('member.dashboard');
+});
+
 Route::get('/member/dashboard', function () {
     return view('member.dashboard');
 })->name('member.dashboard');
@@ -46,3 +54,4 @@ Route::get('/member/data-saya', function () {
 Route::get('/member/rekap-absensi', function () {
     return view('member.rekap-absensi');
 })->name('member.rekap');
+

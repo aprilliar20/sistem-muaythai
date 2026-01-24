@@ -89,16 +89,33 @@
             <h2>Login</h2>
 
             <div class="card">
-                <form action="/login" method="POST">
-                    @csrf
 
-                    <label>Email</label>
-                    <input type="text" name="email" placeholder="Email" required>
+    {{-- FLASH MESSAGE --}}
+    @if (session('error'))
+        <div style="color: red; margin-bottom: 10px;">
+            {{ session('error') }}
+        </div>
+    @endif
 
-                    <label>Password</label>
-                    <input type="password" name="password" placeholder="Password" required>
+    @if (session('success'))
+        <div style="color: green; margin-bottom: 10px;">
+            {{ session('success') }}
+        </div>
+    @endif
 
-                    <button type="submit">Sign In</button>
+    <form action="/login" method="POST">
+        @csrf
+
+        <label>Email</label>
+        <input type="text" name="email" placeholder="Email" required>
+
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Password" required>
+
+        <button type="submit">Sign In</button>
+    </form>
+</div>
+
                 </form>
             </div>
         </div>
