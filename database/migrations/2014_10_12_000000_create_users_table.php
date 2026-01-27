@@ -18,10 +18,10 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->string('no hp');
+            $table->string('no_hp');
             $table->enum('paket', ['unlimited', 'reguler']);
-            $table->integer('sisa');
-            $table->date('masa aktif');
+            $table->integer('sisa')->nullable();
+            $table->date('masa_aktif')->nullable();
             $table->boolean('status');
             $table->enum('role', ['admin', 'member']);
             $table->timestamps();

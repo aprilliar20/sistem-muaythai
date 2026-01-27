@@ -49,32 +49,41 @@
                     <th>Aksi</th>
                 </tr>
             </thead>
-            <tbody>
+        <tbody>
+            @forelse($members as $member)
                 <tr>
-                    <td>1</td><td>April</td><td><a href="#">A123421</a></td><td>Reguler</td><td>5</td><td>20/08/2025</td>
-                    <td><span class="badge nonaktif">Non Aktif</span></td>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $member->name }}</td>
+                    <td><a href="#">{{ $member->qr_code ?? '-' }}</a></td>
+                    <td>{{ $member->paket ?? '-' }}</td>
+                    <td>{{ $member->sisa ?? '-' }}</td>
+                    <td>{{ $member->masa_aktif ?? '-' }}</td>
+
                     <td>
-                        <span class="icon-btn">✏️</span>
-                        <span class="icon-btn">🗑️</span>
+                        @if($member->status == 'aktif')
+                            <span class="badge aktif">Aktif</span>
+                        @else
+                            <span class="badge nonaktif">Non Aktif</span>
+                        @endif
+                    </td>
+
+                    <td>
+                        <a href="{{ route('member.edit', $member->id) }}" class="icon-btn">✏️</a>
+
+                        <form action="{{ route('member.destroy', $member->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button class="icon-btn" style="border:none; background:none; cursor:pointer;">🗑️</button>
+                        </form>
                     </td>
                 </tr>
+            @empty
                 <tr>
-                    <td>2</td><td>Lala</td><td><a href="#">A772727</a></td><td>Unlimited</td><td>-</td><td>25/08/2025</td>
-                    <td><span class="badge aktif">Aktif</span></td>
-                    <td>
-                        <span class="icon-btn">✏️</span>
-                        <span class="icon-btn">🗑️</span>
-                    </td>
+                    <td colspan="8" style="text-align:center;">Belum ada member</td>
                 </tr>
-                <tr>
-                    <td>3</td><td>Alex</td><td><a href="#">A901922</a></td><td>Unlimited</td><td>-</td><td>19/08/2025</td>
-                    <td><span class="badge aktif">Aktif</span></td>
-                    <td>
-                        <span class="icon-btn">✏️</span>
-                        <span class="icon-btn">🗑️</span>
-                    </td>
-                </tr>
-            </tbody>
+            @endforelse
+        </tbody>
+
         </table>
 
         <!-- FOOTNOTE -->
@@ -95,3 +104,4 @@
 
 </body>
 </html>
+

@@ -15,9 +15,9 @@
         <h2>Camp Muaythai<br>Independent</h2>
         <nav>
             <a href="#" class="active">Dashboard</a>
-            <a href="#">Member</a>
-            <a href="#">Rekap Absensi</a>
-            <a href="#">Logout</a>
+            <a href="/member">Member</a>
+            <a href="/rekap">Rekap Absensi</a>
+            <a href="/login">Logout</a>
         </nav>
     </aside>
 

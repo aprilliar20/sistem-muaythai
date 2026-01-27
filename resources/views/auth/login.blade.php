@@ -90,12 +90,13 @@
 
             <div class="card">
 
-    {{-- FLASH MESSAGE --}}
-    @if (session('error'))
-        <div style="color: red; margin-bottom: 10px;">
-            {{ session('error') }}
+        {{-- FLASH MESSAGE --}}
+    @if ($errors->any())
+        <div style="color: red;">
+            {{ $errors->first() }}
         </div>
     @endif
+
 
     @if (session('success'))
         <div style="color: green; margin-bottom: 10px;">
@@ -107,7 +108,8 @@
         @csrf
 
         <label>Email</label>
-        <input type="text" name="email" placeholder="Email" required>
+        <input type="text" name="email" placeholder="Email" value="{{ old('email') }}" required>
+
 
         <label>Password</label>
         <input type="password" name="password" placeholder="Password" required>

@@ -55,3 +55,19 @@ Route::get('/member/rekap-absensi', function () {
     return view('member.rekap-absensi');
 })->name('member.rekap');
 
+use App\Http\Controllers\MemberController;
+
+Route::middleware(['auth', 'role:admin'])->group(function() {
+
+    Route::get('/member', [MemberController::class, 'index'])->name('member.index');
+
+    Route::get('/member/tambah', [MemberController::class, 'create'])->name('member.tambah');
+
+    Route::post('/member/tambah', [MemberController::class, 'store'])->name('member.store');
+
+    Route::get('/member/edit/{user}', [MemberController::class, 'edit'])->name('member.edit');
+
+    Route::put('/member/update/{user}', [MemberController::class, 'update'])->name('member.update');
+
+    Route::delete('/member/delete/{user}', [MemberController::class, 'destroy'])->name('member.destroy');
+});

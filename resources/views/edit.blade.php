@@ -4,45 +4,50 @@
 
 <div class="edit-member-container">
     <h2>Edit Member</h2>
-
+<form action="{{route('member.update',$user)}}" method="post">
     <div class="form-grid">
+        @csrf @method('put')
 
         <div class="form-column">
             <label>Nama</label>
-            <input type="text" value="Aprillia R">
+            <input name="name" type="text" value="{{ $user->name }} ">
 
             <label>No HP</label>
-            <input type="text" value="08127382929">
+            <input name="no_hp" type="text" value="{{ $user->no_hp }}">
 
             <label>Paket</label>
-            <div class="paket-select">
-                <span class="paket inactive">Unlimited</span>
-                <span class="paket active">Reguler</span>
-            </div>
+  <select name="paket" id="cars">
+    <option {{ $user->paket =='unlimited'?'selected':"" }} value="unlimited">Unlimited</option>
+    <option {{ $user->paket =='reguler'?'selected':"" }} value="reguler">Reguler</option>
+  </select>
 
             <label>Sisa</label>
-            <input type="number" value="5">
+            <input name="sisa" type="number" value="{{ $user->sisa }}">
         </div>
 
         <div class="form-column">
             <label>Masa Aktif</label>
-            <input type="date" value="2025-08-20">
+            <input name="masa_aktif" type="date" value="{{ $user->masa_aktif }}">
 
             <label>Status</label>
-            <span class="status nonaktif">Non Aktif</span>
+           <select name="status" id="cars">
+    <option {{ $user->status ?'selected':"" }} value="aktif">Aktif</option>
+    <option {{ $user->status ?'selected':"" }} value="non aktif">Non Aktif</option>
+  </select>
 
             <label>Email</label>
-            <input type="email" value="ramanapril@gmail.com">
+            <input name="email" type="email" value="{{ $user->email }}">
 
             <label>Password</label>
-            <input type="password" value="april123#">
+            <input name="password" type="password" value="{{ $user->password }}">
 
             <label>QR Code</label>
             <a href="#" class="qr-link">A123421</a>
         </div>
     </div>
 
-    <button type="button" class="btn-save">Simpan</button>
+    <button type="submit" class="btn-save">Simpan</button>
+    </form>
 </div>
 
 @endsection
