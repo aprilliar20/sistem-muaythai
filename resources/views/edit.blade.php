@@ -30,16 +30,18 @@
             <input name="masa_aktif" type="date" value="{{ $user->masa_aktif }}">
 
             <label>Status</label>
-           <select name="status" id="cars">
-    <option {{ $user->status ?'selected':"" }} value="aktif">Aktif</option>
-    <option {{ $user->status ?'selected':"" }} value="non aktif">Non Aktif</option>
-  </select>
+          <select name="status">
+    <option value="1" {{ $user->status == 1 ? 'selected' : '' }}>Aktif</option>
+    <option value="0" {{ $user->status == 0 ? 'selected' : '' }}>Non Aktif</option>
+</select>
+
 
             <label>Email</label>
             <input name="email" type="email" value="{{ $user->email }}">
 
             <label>Password</label>
-            <input name="password" type="password" value="{{ $user->password }}">
+            <input name="password" type="password" placeholder="Isi jika ingin ganti">
+
 
             <label>QR Code</label>
             <a href="#" class="qr-link">A123421</a>

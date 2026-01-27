@@ -41,22 +41,30 @@ class MemberController extends Controller
     }
 
     public function update(Request $request, User $user)
-    {
-        $validated = $request->validate([
-            'name'  => 'required',
-            'no_hp' => 'required',
-            'sisa' => 'required',
-            'masa_aktif' => 'required',
-            'password' => 'nullable|min:6',
-            'email' => 'required|email|unique:users,email,'.$user->id,
-            'paket' => 'nullable',
-            'status' => 'nullable',
-        ]);
+{
+    $validated = $request->validate([
+        'name'  => 'required',
+        'no_hp' => 'required',
+        'sisa' => 'required',
+        'masa_aktif' => 'required',
+        'password' => 'nullable|min:6',
+        'email' => 'required|email|unique:users,email,'.$user->id,
+        'paket' => 'nullable',
+        'status' => 'nullable',
+    ]);
 
-        $user->update($validated);
-
-        return redirect()->route('member.index')->with('success', 'Member berhasil diperbarui');
+    // handle password jika diisi
+    if ($request->filled('password')) {
+        $validated['password'] = bcrypt($request->password);
+    } else {
+        unset($validated['password']);
     }
+
+    $user->update($validated);
+
+    return redirect()->route('member.index')->with('success', 'Member berhasil diperbarui');
+}
+
 
     public function destroy(User $user)
     {

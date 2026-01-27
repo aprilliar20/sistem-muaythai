@@ -59,13 +59,14 @@
                     <td>{{ $member->sisa ?? '-' }}</td>
                     <td>{{ $member->masa_aktif ?? '-' }}</td>
 
-                    <td>
-                        @if($member->status == 'aktif')
-                            <span class="badge aktif">Aktif</span>
-                        @else
-                            <span class="badge nonaktif">Non Aktif</span>
-                        @endif
-                    </td>
+                   <td>
+                @if($member->status == 1)
+                    <span class="badge aktif">Aktif</span>
+                @else
+                    <span class="badge nonaktif">Non Aktif</span>
+                @endif
+            </td>
+
 
                     <td>
                         <a href="{{ route('member.edit', $member->id) }}" class="icon-btn">✏️</a>
