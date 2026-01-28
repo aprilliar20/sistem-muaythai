@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Absen;
-
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 class MemberController extends Controller
 {
     public function index(Request $request)
@@ -104,9 +104,18 @@ public function store(Request $request)
         return redirect()->route('member.index')->with('success', 'Member berhasil dihapus');
     }
 
-    // Pastikan baris ini ada di paling atas (sebelum class)
+   public function downloadQr($id)
+{
+    $user = \App\Models\User::findOrFail($id);
+    
+    // Kita ganti format('png') jadi format('svg')
+    // SVG tetap bisa dibuka di HP dan sangat tajam saat di-scan
+    $image = QrCode::format('svg')
+                 ->size(500)
+                 ->margin(2)
+                 ->generate($user->id);
 
-
-// ... di dalam class MemberController ...
-
-}
+    return response($image)
+            ->header('Content-Type', 'image/svg+xml')
+            ->header('Content-Disposition', 'attachment; filename="QR_'.$user->name.'.svg"');
+}}

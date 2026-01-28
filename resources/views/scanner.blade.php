@@ -60,15 +60,19 @@
     let html5QrcodeScanner = new Html5QrcodeScanner(
     "reader", 
     { 
-        fps: 30, // Kita naikkan dari 10 ke 30 supaya lebih responsif
-        qrbox: { width: 300, height: 300 }, // Kotak scan diperbesar
+        fps: 60, // Kita naikkan dari 10 ke 30 supaya lebih responsif
+        qrbox: { width: 250, height: 250 }, // Kotak scan diperbesar
         aspectRatio: 1.0,
+        disableFlip: false,
         experimentalFeatures: {
             useBarCodeDetectorIfSupported: true // Mencoba fitur deteksi bawaan browser jika ada
         }
     }
 );
     html5QrcodeScanner.render(onScanSuccess);
+    function onScanFailure(error) {
+    // Biarkan kosong, jangan pakai console.warn karena bikin lemot
+}
 </script>
 </body>
 </html>

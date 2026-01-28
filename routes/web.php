@@ -89,3 +89,5 @@ use App\Http\Controllers\AbsenController;
 // Ganti route yang lama dengan ini
 Route::get('/rekap', [AbsenController::class, 'index'])->name('rekap.index');
 Route::post('/proses-absen', [AbsenController::class, 'prosesAbsen'])->name('proses.absen');
+
+Route::get('/member/download-qr/{id}', [MemberController::class, 'downloadQr'])->name('member.downloadQr');
