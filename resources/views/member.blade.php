@@ -31,9 +31,22 @@
 
         <!-- SEARCH + ADD BUTTON -->
         <div class="member-actions">
-            <input type="text" class="search-input" placeholder="Cari member...">
-            <a href="{{ route('member.tambah') }}" class="btn-add">+ Tambah Member</a>
-        </div>
+    <form action="{{ route('member.index') }}" method="GET" style="display: flex; gap: 10px;">
+        <input type="text" 
+               name="search" 
+               class="search-input" 
+               placeholder="Cari member..." 
+               value="{{ request('search') }}">
+        <button type="submit" class="btn-add">Cari</button>
+        
+        {{-- Tombol reset untuk kembali ke semua data --}}
+        @if(request('search'))
+            <a href="{{ route('member.index') }}" class="btn-add" style="background: #555;">Reset</a>
+        @endif
+    </form>
+    
+    <a href="{{ route('member.tambah') }}" class="btn-add">+ Tambah Member</a>
+</div>
 
         <!-- TABLE -->
         <table class="member-table">
@@ -50,11 +63,16 @@
                 </tr>
             </thead>
         <tbody>
-            @forelse($members as $member)
+            @forelse($members as $index => $member)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    {{-- Rumus agar nomor urut mengikuti halaman dan hasil pencarian --}}
+                    <td>{{ ($members->currentPage() - 1) * $members->perPage() + $loop->iteration }}</td>
                     <td>{{ $member->name }}</td>
-                    <td><a href="#">{{ $member->qr_code ?? '-' }}</a></td>
+                    <td>
+                        <div style="background: white; padding: 5px; display: inline-block;">
+                            {!! QrCode::size(50)->generate($member->id) !!}
+                        </div>
+                    </td>
                     <td>{{ $member->paket ?? '-' }}</td>
                     <td>{{ $member->sisa ?? '-' }}</td>
                     <td>{{ $member->masa_aktif ?? '-' }}</td>
@@ -89,15 +107,13 @@
 
         <!-- FOOTNOTE -->
         <div class="info-row">
-            Menampilkan 10 dari 10 member
+            Menampilkan {{ $members->firstItem() }} sampai {{ $members->lastItem() }} dari {{ $members->total() }} member
         </div>
 
         <!-- PAGINATION -->
         <div class="pagination">
-            <span class="page-number active">1</span>
-            <span class="page-number disabled">2</span>
-            <span class="page-number disabled">3</span>
-        </div>
+    {{ $members->links() }}
+</div>
 
     </main>
 

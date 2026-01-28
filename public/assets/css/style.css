@@ -614,3 +614,57 @@ label {
     opacity: 0.4;
     cursor: not-allowed;
 }
+
+
+/* Merapikan Pagination agar tidak berantakan */
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    gap: 5px;
+}
+
+.pagination li {
+    display: inline;
+}
+
+.pagination li a,
+.pagination li span {
+    padding: 8px 12px;
+    background: #444;
+    /* Warna abu gelap agar masuk ke tema merah-hitam */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.pagination li.active span {
+    background: #c20000;
+    /* Warna merah sesuai sidebar */
+    font-weight: bold;
+}
+
+.pagination li.disabled span {
+    background: #222;
+    color: #777;
+    cursor: not-allowed;
+}
+
+
+/* Sembunyikan simbol panah bawaan yang aneh jika masih muncul */
+
+.pagination svg {
+    width: 20px;
+}
+
+.member-actions form {
+    display: flex;
+    align-items: center;
+}
+
+.btn-add {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 14px;
+}

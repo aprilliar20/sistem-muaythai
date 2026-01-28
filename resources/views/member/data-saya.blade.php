@@ -16,7 +16,7 @@
         <nav>
             <a href="/member/dashboard">Dashboard</a>
             <a href="/member/data-saya" class="active">Data Saya</a>
-            <a href="#">Rekap Absensi</a>
+            <a href="/member/rekap-absensi">Rekap Absensi</a>
             <a href="/logout">Logout</a>
         </nav>
     </aside>
