@@ -2,65 +2,65 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Absen;
-use App\Http\Requests\StoreAbsenRequest;
-use App\Http\Requests\UpdateAbsenRequest;
+use Illuminate\Http\Request;
+use App\Models\Absen; // Pastikan Model Absen dipanggil
+use App\Models\User;  // Pastikan Model User dipanggil
 
 class AbsenController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Fungsi untuk menampilkan halaman rekap
     public function index()
-    {
-        //
+{
+    // Mengambil data absen, diurutkan dari yang paling baru (descending)
+    $dataAbsen = \App\Models\Absen::with('user')->orderBy('waktu_absen', 'desc')->get();
+    
+    return view('rekap', compact('dataAbsen'));
+}
+
+    // Fungsi untuk memproses hasil scan (Pindahan dari MemberController)
+   public function prosesAbsen(Request $request)
+{
+    try {
+        $user = \App\Models\User::find($request->user_id);
+        
+        if (!$user) {
+            return response()->json(['success' => false, 'message' => 'Member tidak ditemukan!'], 404);
+        }
+
+        // --- TAMBAHKAN VALIDASI STATUS DI SINI ---
+        // Asumsi: 1 adalah Aktif, 0 adalah Non-Aktif
+        if ($user->status == 0) {
+            return response()->json([
+                'success' => false, 
+                'message' => 'Status member Anda Non-Aktif, Anda tidak dapat melakukan absensi.'
+            ], 403); // Error 403 artinya Forbidden/Dilarang
+        }
+
+        // Validasi tambahan: Cek sisa sesi jika paket Reguler
+        if (strtolower($user->paket) == 'reguler' && $user->sisa <= 0) {
+            return response()->json([
+                'success' => false, 
+                'message' => 'Sisa sesi Anda habis. Silakan top-up paket!'
+            ], 403);
+        }
+
+        // Jika lolos validasi, baru simpan data absen
+        \App\Models\Absen::create([
+            'user_id' => $user->id,
+            'waktu_absen' => now(),
+        ]);
+
+        // Potong sisa sesi jika reguler
+        if (strtolower($user->paket) == 'reguler') {
+            $user->decrement('sisa');
+        }
+
+        return response()->json(['success' => true, 'message' => $user->name]);
+
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'message' => 'Error: ' . $e->getMessage()], 500);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreAbsenRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Absen $absen)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Absen $absen)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateAbsenRequest $request, Absen $absen)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Absen $absen)
-    {
-        //
     }
 }
+

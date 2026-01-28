@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\MemberController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MemberDashboardController;
+
 
 
 Route::get('/', function () {
@@ -55,7 +58,6 @@ Route::get('/member/rekap-absensi', function () {
     return view('member.rekap-absensi');
 })->name('member.rekap');
 
-use App\Http\Controllers\MemberController;
 
 Route::middleware(['auth', 'role:admin'])->group(function() {
 
@@ -71,3 +73,19 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
     Route::delete('/member/delete/{user}', [MemberController::class, 'destroy'])->name('member.destroy');
 });
+
+
+// Pastikan member harus login dulu baru bisa buka halaman ini
+Route::get('/member/data-saya', [MemberDashboardController::class, 'index'])->middleware('auth');
+
+
+// Halaman untuk membuka kamera scanner
+Route::get('/scanner', function () {
+    return view('scanner'); // Sesuaikan dengan nama file kamu
+})->name('tampil.scanner');
+
+use App\Http\Controllers\AbsenController;
+
+// Ganti route yang lama dengan ini
+Route::get('/rekap', [AbsenController::class, 'index'])->name('rekap.index');
+Route::post('/proses-absen', [AbsenController::class, 'prosesAbsen'])->name('proses.absen');

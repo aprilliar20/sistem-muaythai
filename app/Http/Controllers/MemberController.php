@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Absen;
 
 class MemberController extends Controller
 {
@@ -102,5 +103,10 @@ public function store(Request $request)
         $user->delete();
         return redirect()->route('member.index')->with('success', 'Member berhasil dihapus');
     }
-}
 
+    // Pastikan baris ini ada di paling atas (sebelum class)
+
+
+// ... di dalam class MemberController ...
+
+}

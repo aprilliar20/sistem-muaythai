@@ -50,7 +50,9 @@
         </div>
 
         <!-- SCAN BUTTON -->
-        <button class="scan-btn">Scan QR Absen ></button>
+        <a href="{{ route('tampil.scanner') }}" class="btn-scan">
+            Scan QR Absen >
+        </a>
 
         <!-- TABLE -->
         <h3>Absen Hari Ini</h3>

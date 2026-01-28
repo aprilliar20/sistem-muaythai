@@ -45,38 +45,48 @@
         </div>
 
         <!-- TABLE -->
-        <table class="member-table">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>QR Code</th>
-                    <th>Paket</th>
-                    <th>Sisa</th>
-                    <th>Tanggal</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td><td>April</td><td><a href="#">A123421</a></td><td>Reguler</td><td>5</td><td>20/08/2025</td>
-                    <td><span class="badge aktif">Aktif</span></td>
-                </tr>
-                <tr>
-                    <td>2</td><td>Lala</td><td><a href="#">A772727</a></td><td>Unlimited</td><td>-</td><td>20/08/2025</td>
-                    <td><span class="badge aktif">Aktif</span></td>
-                </tr>
-                <tr>
-                    <td>3</td><td>Alex</td><td><a href="#">A901922</a></td><td>Unlimited</td><td>-</td><td>19/08/2025</td>
-                    <td><span class="badge aktif">Aktif</span></td>
-                </tr>
-            </tbody>
-        </table>
+       <table class="member-table">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Paket</th>
+            <th>Sisa</th>
+            <th>Tanggal</th>
+            <th>Jam Absen</th> <th>Status</th>
+        </tr>
+    </thead>
+   <tbody>
+    @forelse($dataAbsen as $index => $absen)
+    <tr>
+        <td>{{ $index + 1 }}</td>
+        <td>{{ $absen->user->name ?? 'Member Terhapus' }}</td>
+        <td>{{ ucfirst($absen->user->paket ?? '-') }}</td>
+        <td>{{ ($absen->user && $absen->user->paket == 'unlimited') ? '-' : ($absen->user->sisa ?? '-') }}</td>
+        {{-- Mengambil Tanggal dari waktu_absen --}}
+        <td>{{ \Carbon\Carbon::parse($absen->waktu_absen)->format('d/m/Y') }}</td>
+        {{-- Mengambil Jam dari waktu_absen --}}
+        <td style="font-weight: bold; color: #cc0000;">
+            {{ \Carbon\Carbon::parse($absen->waktu_absen)->format('H:i') }} WIB
+        </td>
+        <td>
+            <span class="badge {{ ($absen->user->status ?? 0) == 1 ? 'aktif' : 'nonaktif' }}">
+                {{ ($absen->user->status ?? 0) == 1 ? 'Aktif' : 'Non Aktif' }}
+            </span>
+        </td>
+    </tr>
+    @empty
+    <tr>
+        <td colspan="8" style="text-align: center;">Belum ada data absensi hari ini.</td>
+    </tr>
+    @endforelse
+</tbody>
+</table>
 
         <!-- FOOTER INFO -->
         <div class="info-row">
-            Menampilkan 3 dari 50 member
-        </div>
+    Menampilkan {{ $dataAbsen->count() }} data absensi
+</div>
 
         <!-- PAGINATION -->
         <div class="pagination">
