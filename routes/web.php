@@ -4,6 +4,9 @@ use App\Http\Controllers\MemberController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MemberDashboardController;
+use App\Models\User;
+use App\Models\Absen;
+use Carbon\Carbon;
 
 
 
@@ -91,3 +94,58 @@ Route::get('/rekap', [AbsenController::class, 'index'])->name('rekap.index');
 Route::post('/proses-absen', [AbsenController::class, 'prosesAbsen'])->name('proses.absen');
 
 Route::get('/member/download-qr/{id}', [MemberController::class, 'downloadQr'])->name('member.downloadQr');
+
+
+
+Route::get('/dashboard', function () {
+    // 1. Hitung total member
+    $totalMember = User::count();
+    
+    // 2. Hitung berdasarkan paket
+    $reguler = User::where('paket', 'reguler')->count();
+    $unlimited = User::where('paket', 'unlimited')->count();
+    
+    // 3. Ambil absen yang HANYA terjadi hari ini
+    $absenHariIni = Absen::with('user')
+                    ->whereDate('waktu_absen', Carbon::today())
+                    ->orderBy('waktu_absen', 'desc')
+                    ->get();
+
+    // 4. Kirim semua data ke view dashboard.blade.php
+    return view('dashboard', compact('totalMember', 'reguler', 'unlimited', 'absenHariIni'));
+})->name('dashboard');
+
+
+use Illuminate\Http\Request;
+// ... (use lainnya)
+
+// GANTI SEMUA ROUTE /rekap YANG ADA DENGAN INI:
+
+Route::get('/rekap', function (Illuminate\Http\Request $request) {
+    $search = $request->query('search');
+    $bulan = $request->query('bulan');
+    $tahun = $request->query('tahun');
+
+    $query = Absen::with('user');
+
+    if ($search) {
+        $query->whereHas('user', function($q) use ($search) {
+            $q->where('name', 'like', '%' . $search . '%');
+        });
+    }
+
+    if ($bulan) {
+        $query->whereMonth('waktu_absen', $bulan);
+    }
+
+    if ($tahun) {
+        $query->whereYear('waktu_absen', $tahun);
+    }
+
+    // Pakai paginate(10) supaya pagination jalan
+    $dataAbsen = $query->orderBy('waktu_absen', 'desc')
+                       ->paginate(10)
+                       ->withQueryString(); 
+
+    return view('rekap', compact('dataAbsen'));
+})->name('rekap.index'); // Kuncinya di sini, pakai .index!

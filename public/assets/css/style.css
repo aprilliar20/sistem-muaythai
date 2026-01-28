@@ -668,3 +668,104 @@ label {
     display: inline-block;
     padding: 8px 14px;
 }
+
+.btn-scan-huge {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    background: linear-gradient(135deg, #cc0000 0%, #8b0000 100%);
+    /* Merah Mewah */
+    color: white !important;
+    /* Supaya tetap putih walau ada link biru */
+    text-decoration: none !important;
+    padding: 25px 50px;
+    border-radius: 60px;
+    /* Membuat lonjong sempurna */
+    font-size: 22px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(204, 0, 0, 0.3);
+    border: none;
+}
+
+.btn-scan-huge:hover {
+    transform: scale(1.05);
+    /* Sedikit membesar saat disentuh */
+    box-shadow: 0 15px 30px rgba(204, 0, 0, 0.4);
+    background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+}
+
+.icon-circle {
+    background: rgba(255, 255, 255, 0.2);
+    /* Lingkaran transparan di ikon */
+    padding: 12px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-scan-huge span {
+    letter-spacing: 1px;
+}
+
+.filter-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.filter-input {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.btn-filter {
+    background: #cc0000;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-reset {
+    background: #666;
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+
+/* ... CSS kamu yang sudah ada ... */
+
+.pagination-links nav svg {
+    width: 20px;
+}
+
+.pagination-links nav div:first-child {
+    display: none;
+    /* Sembunyikan teks detail versi mobile tailwind */
+}
+
+.pagination-links .relative {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #cc0000;
+}
+
+.pagination-links .bg-white {
+    background-color: white;
+}
+
+.pagination-links span[aria-current="page"] .bg-gray-100 {
+    background-color: #cc0000 !important;
+    color: white !important;
+}
