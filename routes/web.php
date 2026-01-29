@@ -105,14 +105,18 @@ Route::get('/dashboard', function () {
     $reguler = User::where('paket', 'reguler')->count();
     $unlimited = User::where('paket', 'unlimited')->count();
     
-    // 3. Ambil absen yang HANYA terjadi hari ini
-    $absenHariIni = Absen::with('user')
-                    ->whereDate('waktu_absen', Carbon::today())
+    // 1. Ambil SEMUA data absen hari ini (untuk angka total di pojok kanan)
+    $semuaAbsenHariIni = Absen::whereDate('waktu_absen', \Carbon\Carbon::today())->get();
+    
+    // 2. Ambil hanya 5 data TERBARU (untuk isi tabel)
+    $absenLimit = Absen::with('user')
+                    ->whereDate('waktu_absen', \Carbon\Carbon::today())
                     ->orderBy('waktu_absen', 'desc')
+                    ->take(5)
                     ->get();
 
     // 4. Kirim semua data ke view dashboard.blade.php
-    return view('dashboard', compact('totalMember', 'reguler', 'unlimited', 'absenHariIni'));
+    return view('dashboard', compact('totalMember', 'reguler', 'unlimited', 'semuaAbsenHariIni', 'absenLimit'));
 })->name('dashboard');
 
 

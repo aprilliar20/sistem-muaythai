@@ -45,7 +45,7 @@
     </div>
     <div class="card">
         <p>Absensi Hari Ini</p>
-        <h4>{{ $absenHariIni->count() }}</h4>
+        <h4>{{ $semuaAbsenHariIni->count() }}</h4>
     </div>
 </div>
 
@@ -64,30 +64,55 @@
 </div>
 
         <!-- TABLE -->
-        <h3>Absen Hari Ini</h3>
+        <div class="card-table" style="margin-top: 30px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h4 style="margin: 0; color: #333;">🔥 Member Latihan Hari Ini</h4>
+                <span style="background: #ffe5e5; color: #cc0000; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: bold;">
+                    {{ $semuaAbsenHariIni->count() }} Orang
+                </span>
+            </div>
 
-        <table class="absen-table">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Member</th>
-                    <th>Tanggal</th>
-                    <th>Jam Absen</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td><td>April</td><td>20/04/2025</td><td>10.00</td>
-                </tr>
-                <tr>
-                    <td>2</td><td>Lala</td><td>20/04/2025</td><td>10.00</td>
-                </tr>
-                <tr>
-                    <td>3</td><td>Alex</td><td>20/04/2025</td><td>10.00</td>
-                </tr>
-            </tbody>
-        </table>
-
+            <table class="member-table" style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="text-align: left; border-bottom: 2px solid #f4f4f4;">
+                        <th style="padding: 10px; color: #333;">Jam</th>
+                        <th style="padding: 10px; color: #333;">Nama Member</th>
+                        <th style="padding: 10px; color: #333;">Paket</th>
+                        <th style="padding: 10px; color: #333;">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($absenLimit as $absen)
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 10px; color: #cc0000 !important; font-weight: bold;">
+                            {{ \Carbon\Carbon::parse($absen->waktu_absen)->format('H:i') }}
+                        </td>
+                        <td style="padding: 10px; color: #333 !important;">
+                            {{ $absen->user->name ?? 'User' }}
+                        </td>
+                        <td style="padding: 10px; color: #333 !important;">
+                            <span style="background: #eee; padding: 3px 8px; border-radius: 5px; font-size: 11px; color: #333;">
+                                {{ ucfirst($absen->user->paket ?? '-') }}
+                            </span>
+                        </td>
+                        <td style="padding: 10px;">
+                            <span class="badge aktif" style="font-size: 11px; background: #28a745; color: white; padding: 3px 8px; border-radius: 4px;">Hadir</span>
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="4" style="text-align: center; padding: 20px; color: #999;">
+                            Belum ada member yang scan pagi ini. Yuk, semangat! 🥊
+                        </td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+            
+            <div style="margin-top: 15px; text-align: center;">
+                <a href="/rekap" style="text-decoration: none; color: #666; font-size: 13px; font-weight: bold;">Lihat Semua Riwayat →</a>
+            </div>
+        </div>
     </main>
 </div>
 
