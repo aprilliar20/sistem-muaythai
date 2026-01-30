@@ -73,12 +73,12 @@
                     <td>{{ $absen->user->name ?? 'Member Terhapus' }}</td>
                     <td>{{ ucfirst($absen->user->paket ?? '-') }}</td>
                     <td>
-                        @if(($absen->user->paket ?? '') == 'unlimited')
-                            Unlimited
-                        @else
-                            {{ $absen->user->sisa ?? 0 }}
-                        @endif
-                    </td>
+    @if(strtolower($absen->user->paket) == 'unlimited')
+        <span class="badge paket">Unlimited</span>
+    @else
+        {{ $absen->sisa_sesi_snapshot ?? '-' }}
+    @endif
+</td>
                     <td>{{ \Carbon\Carbon::parse($absen->waktu_absen)->format('d/m/Y') }}</td>
                     <td style="font-weight: bold; color: #cc0000;">
                         {{ \Carbon\Carbon::parse($absen->waktu_absen)->format('H:i') }} WIB

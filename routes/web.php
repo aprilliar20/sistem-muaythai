@@ -4,6 +4,7 @@ use App\Http\Controllers\MemberController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MemberDashboardController;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Absen;
 use Carbon\Carbon;
@@ -15,7 +16,14 @@ Route::get('/', function () {
 });
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate'])->name('login.process');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// Pastikan pakainya Route::post, bukan Route::get
+Route::get('/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/login');
+})->name('logout');
 
 
 //admin

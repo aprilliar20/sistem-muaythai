@@ -17,7 +17,11 @@
             <a href="#" class="active">Dashboard</a>
             <a href="/member">Member</a>
             <a href="/rekap">Rekap Absensi</a>
-            <a href="/login">Logout</a>
+            <nav>
+    <a href="{{ route('logout') }}">
+    Logout
+</a>
+</nav>
         </nav>
     </aside>
 

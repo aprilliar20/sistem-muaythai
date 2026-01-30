@@ -45,12 +45,14 @@ class AbsenController extends Controller
         }
 
         // Jika lolos validasi, baru simpan data absen
-        \App\Models\Absen::create([
+       \App\Models\Absen::create([
             'user_id' => $user->id,
             'waktu_absen' => now(),
+            // AMBIL "FOTO" SISA SESI SEKARANG SEBELUM DIKURANGI
+            'sisa_sesi_snapshot' => $user->sisa, 
         ]);
 
-        // Potong sisa sesi jika reguler
+        // Potong sisa sesi jika reguler (Dilakukan SETELAH snapshot disimpan)
         if (strtolower($user->paket) == 'reguler') {
             $user->decrement('sisa');
         }

@@ -9,13 +9,14 @@ class Absen extends Model
 {
     use HasFactory;
 
-    // Tambahkan baris ini untuk memberi izin pengisian kolom
+    protected $table = 'absens'; // Pastikan nama tabelnya benar
+
     protected $fillable = [
         'user_id',
         'waktu_absen',
+        'sisa_sesi_snapshot', // <--- TAMBAHKAN INI! Tanpa ini, data nggak akan masuk.
     ];
 
-    // Jika kamu punya relasi ke User, pastikan ini juga ada
     public function user()
     {
         return $this->belongsTo(User::class);
