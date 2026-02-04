@@ -60,7 +60,7 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>Paket</th>
-                    <th>Sisa Sesi</th>
+                    <th>Sisa Token</th>
                     <th>Tanggal</th>
                     <th>Jam Absen</th>
                     <th>Status</th>

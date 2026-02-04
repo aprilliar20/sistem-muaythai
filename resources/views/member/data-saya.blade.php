@@ -90,7 +90,7 @@
                             <span class="badge paket" style="padding: 8px 15px; font-size: 14px;">{{ ucfirst($user->paket) }}</span>
                         </div>
                         <div class="form-col">
-                            <label>Sisa Sesi</label>
+                            <label>Sisa Token</label>
                             <input type="text" value="{{ $user->paket == 'unlimited' ? '∞' : $user->sisa }}" disabled class="disabled-input" style="font-weight: bold; color: #cc0000;">
                         </div>
                     </div>
